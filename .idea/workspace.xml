@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ebf5146-1e1e-4062-b71a-7236b593ae94" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Images/blackbishop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/blackking.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/blackknight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/blackpawn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/blackqueen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/blackrook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/whitebishop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/whiteking.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/whiteknight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/whitepawn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/whitequeen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/whiterook.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rook.java" afterDir="false" />
-    </list>
+    <list default="true" id="4ebf5146-1e1e-4062-b71a-7236b593ae94" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,12 +79,20 @@
       <option name="project" value="LOCAL" />
       <updated>1682480340054</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Got front end working">
+      <created>1682523640908</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682523640908</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating Repo" />
     <MESSAGE value="Finished Creating Classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Creating Classes" />
+    <MESSAGE value="Got front end working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got front end working" />
   </component>
 </project>
