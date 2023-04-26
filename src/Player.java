@@ -6,8 +6,21 @@ public class Player {
     private ArrayList<Piece> pieces = new ArrayList<>();
     public Player(Color c) {
         this.c = c;
-        for(int i = 0; i < 8; i++) {
+    }
 
-        }
+    public Color getC() {
+        return c;
+    }
+
+    public ArrayList<Piece> getPieces() {
+        return pieces;
+    }
+
+    public void addPiece(Piece piece) {
+         pieces.add(piece);
+    }
+
+    public void removePiece(Piece piece) {
+        pieces.remove(piece);
     }
 }

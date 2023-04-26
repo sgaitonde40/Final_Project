@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Game {
     private Board board;
@@ -12,7 +13,27 @@ public class Game {
         whitePlayer = new Player(Color.WHITE);
         blackPlayer = new Player(Color.BLACK);
         currentPlayer = whitePlayer;
-        window = new GameViewer(this, 800, 600);
+        window = new GameViewer(this, 720, 740);
+        window.repaint();
+        setPlayerPieces();
+    }
+
+    public ArrayList<Square> getValidMoves() {
+        ArrayList<Square> s = new ArrayList<>();
+        return s;
+    }
+
+    public void setPlayerPieces() {
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 2; j++) {
+                whitePlayer.addPiece(getBoard().getPieceAt(j, i));
+            }
+        }
+        for(int i = 0; i < 8; i++) {
+            for(int j = 6; j < 8; j++) {
+                blackPlayer.addPiece(getBoard().getPieceAt(j, i));
+            }
+        }
     }
 
     public Board getBoard() {
@@ -46,5 +67,5 @@ public class Game {
 
         return false;
     }
-    
+
 }

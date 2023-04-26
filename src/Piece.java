@@ -7,7 +7,7 @@ public class Piece {
     public Piece(Color c, Square position) {
         isAlive = true;
         color = c;
-
+        this.position = position;
     }
 
     public boolean isAlive() {
@@ -47,5 +47,8 @@ public class Piece {
 
     public boolean isLegalMove(Square sq) {
         return true;
+    }
+
+    public void draw(Graphics g, int x, int y, GameViewer G) {
     }
 }
