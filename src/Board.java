@@ -3,78 +3,111 @@ import java.util.ArrayList;
 
 public class Board{
     public static final int BOARD_SIZE = 8;
-    public Piece[][] pieces;
+
+    public Square[][] square;
+    private Piece checker;
+
 
     public Board() {
-        pieces = new Piece[BOARD_SIZE][BOARD_SIZE];
+        // creates a 2d array of pieces and sets all the pieces in their starting location
+        square = new Square[BOARD_SIZE][BOARD_SIZE];
         initializePieces();
     }
 
-    public Piece getPieceAt(int x, int y) {
-        if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE) {
+    // returns the square at index[row][col] as long as it is valid
+    public Square getSquare(int row, int col) {
+        if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE) {
             return null;
         }
-        return pieces[x][y];
+        return square[row][col];
     }
 
-    public ArrayList<Piece> getPieces() {
-        ArrayList<Piece> pieceList = new ArrayList<>();
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            for (int col = 0; col < BOARD_SIZE; col++) {
-                Piece piece = pieces[row][col];
-                if (piece != null) {
-                    pieceList.add(piece);
+    // returns the piece at index[row][col] as long as it is valid
+    public Piece getPieceAt(int row, int col) {
+        if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE) {
+            return null;
+        }
+        return square[row][col].getP();
+    }
+
+    // if a pawn of either reaches the other side of the board it auto promotes to a queen
+    public void isPromotion() {
+        Piece p;
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                p = square[i][j].getP();
+                if(p instanceof Pawn) {
+                    if(p.getColor() == Color.BLACK) {
+                        if(i == 7) {
+                            square[i][j].setP(new Queen(Color.BLACK, square[i][j]));
+                        }
+                    }
+                    else if(p.getColor() == Color.WHITE) {
+                        if(i == 0) {
+                            square[i][j].setP(new Queen(Color.WHITE, square[i][j]));
+                        }
+                    }
                 }
             }
         }
-        return pieceList;
     }
 
-    public Square findKing(Color color) {
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            for (int col = 0; col < BOARD_SIZE; col++) {
-                Square square = new Square(row, col);
-                Piece piece = getPieceAt(row, col);
-                if (piece instanceof King && piece.getColor() == color) {
-                    return square;
+    // takes in a piece and checks if it is attacking the king
+    public boolean isCheck(Piece p) {
+        Color c = p.getColor();
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(square[i][j].getP() instanceof King && square[i][j].getP().getColor() != c) {
+                    if(p.isLegalMove(this, p.getPosition(), i, j)) {
+                        checker = p;
+                        return true;
+                    }
                 }
             }
         }
-        return null;
+        return false;
     }
 
-
+    // sets up all the pieces
     private void initializePieces() {
+        // creates all the squares and puts them in the 2d array
+        for(int row = 0; row < 8; row++) {
+            for(int col = 0; col < 8; col++) {
+                square[row][col] = new Square(row, col);
+            }
+        }
+
         // Set up pawns
         for (int col = 0; col < BOARD_SIZE; col++) {
-            pieces[col][1] = new Pawn(Color.WHITE, new Square(1, col));
-            pieces[col][6] = new Pawn(Color.BLACK, new Square(6, col));
+           square[1][col].setP(new Pawn(Color.BLACK, square[1][col]));
+           square[6][col].setP(new Pawn(Color.WHITE, square[6][col]));
         }
 
         // Set up rooks
-        pieces[0][0] = new Rook(Color.WHITE, new Square(0, 0));
-        pieces[7][0] = new Rook(Color.WHITE, new Square(0, 7));
-        pieces[0][7] = new Rook(Color.BLACK, new Square(7, 0));
-        pieces[7][7] = new Rook(Color.BLACK, new Square(7, 7));
+        square[7][0].setP(new Rook(Color.WHITE, square[7][0]));
+        square[7][7].setP(new Rook(Color.WHITE, square[7][7]));
+        square[0][7].setP(new Rook(Color.BLACK, square[0][7]));
+        square[0][0].setP(new Rook(Color.BLACK, square[0][0]));
 
         // Set up knights
-        pieces[1][0] = new Knight(Color.WHITE, new Square(0, 1));
-        pieces[6][0] = new Knight(Color.WHITE, new Square(0, 6));
-        pieces[1][7] = new Knight(Color.BLACK, new Square(7, 1));
-        pieces[6][7] = new Knight(Color.BLACK, new Square(7, 6));
+        square[7][1].setP(new Knight(Color.WHITE, square[7][1]));
+        square[7][6].setP(new Knight(Color.WHITE, square[7][6]));
+        square[0][1].setP(new Knight(Color.BLACK, square[0][1]));
+        square[0][6].setP(new Knight(Color.BLACK, square[0][6]));
 
         // Set up bishops
-        pieces[2][0] = new Bishop(Color.WHITE, new Square(0, 2));
-        pieces[5][0] = new Bishop(Color.WHITE, new Square(0, 5));
-        pieces[2][7] = new Bishop(Color.BLACK, new Square(7, 2));
-        pieces[5][7] = new Bishop(Color.BLACK, new Square(7, 5));
+        square[7][2].setP(new Bishop(Color.WHITE, square[7][2]));
+        square[7][5].setP(new Bishop(Color.WHITE, square[7][5]));
+        square[0][2].setP(new Bishop(Color.BLACK, square[0][2]));
+        square[0][5].setP(new Bishop(Color.BLACK, square[0][5]));
 
         // Set up queens
-        pieces[3][0] = new Queen(Color.WHITE, new Square(0, 3));
-        pieces[3][7] = new Queen(Color.BLACK, new Square(7, 3));
+        square[7][4].setP(new Queen(Color.WHITE, square[7][4]));
+        square[0][4].setP(new Queen(Color.BLACK, square[0][4]));
 
         // Set up kings
-        pieces[4][0] = new King(Color.WHITE, new Square(0, 4));
-        pieces[4][7] = new King(Color.BLACK, new Square(7, 4));
+        square[7][3].setP(new King(Color.WHITE, square[7][3]));
+        square[0][3].setP(new King(Color.BLACK, square[0][3]));
     }
+
 }

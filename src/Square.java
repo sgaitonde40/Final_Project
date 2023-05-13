@@ -1,48 +1,51 @@
 import java.awt.*;
 
 public class Square {
-    private int x, y;
+    private int row, col;
     private boolean isUsed;
-    private Piece p = new Piece(Color.BLACK, this);
+    private Piece p;
 
     public Square(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.row = x;
+        this.col = y;
         isUsed = false;
-        p = null;
     }
 
-    public int getX() {
-        return x;
+    public int getRow() {
+        return row;
     }
 
-    public int getY() {
-        return y;
+    public int getCol() {
+        return col;
     }
 
     public boolean isUsed() {
         return isUsed;
     }
 
+    // returns piece in this square
     public Piece getP() {
         return p;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-    public void setUsed(boolean used) {
-        isUsed = used;
-    }
-
+    // updates isused and sets the piece equal to the input
     public void setP(Piece p) {
         this.p = p;
+        if(p != null) {
+            isUsed = true;
+        }
+       else {
+           isUsed = false;
+        }
     }
     public void removeP() {
         this.p = null;
+    }
+
+    // if there is a piece in this square draw it
+    public void draw(Graphics g, GameViewer G) {
+        if(p != null) {
+            p.draw(g, G);
+        }
     }
 }

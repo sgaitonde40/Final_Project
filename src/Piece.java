@@ -1,54 +1,54 @@
 import java.awt.*;
 
 public class Piece {
-    private boolean isAlive;
     private Color color;
     private Square position;
+    private int row,col;
+
     public Piece(Color c, Square position) {
-        isAlive = true;
+        // sets up key info
         color = c;
         this.position = position;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
+        this.col = position.getCol();
+        this.row = position.getRow();
     }
 
     public Color getColor() {
         return color;
     }
 
-    public void setPosition(Square position) {
-        this.position = position;
+    public void setPosition(int x, int y) {
+        this.position = new Square(x, y);
     }
+
 
     public Square getPosition() {
         return position;
     }
 
-    public boolean move(Square sq) {
-        if (!isLegalMove(sq)) {
-            return false;
-        }
-        Piece capturedPiece = sq.getP();
-        if (capturedPiece != null) {
-            capturedPiece.capture();
-        }
-        position.removeP();
-        sq.setP(this);
-        position = sq;
+    // here for ovveriding purposes
+    public boolean isLegalMove(Board b, Square start, int row, int col) {
         return true;
     }
 
-    public void capture() {
-        this.isAlive = false;
-        this.position.removeP();
+    // here for ovveriding purposes
+    public void move(int row, int col, Board b) {
+        if(isLegalMove(b, position, row, col)) {
+            position.setP(null);
+            b.getSquare(this.row, this.col).setP(null);
+            this.row = row;
+            this.col = col;
+            b.getSquare(row, col).setP(this);
+        }
     }
 
-    public boolean isLegalMove(Square sq) {
-        return true;
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+    // here for ovveriding purposes
+    public void draw(Graphics g, GameViewer G) {
+
     }
 
-    public void draw(Graphics g, int x, int y, GameViewer G) {
-    }
 }

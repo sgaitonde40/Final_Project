@@ -1,5 +1,6 @@
 public class main {
+    // runs the game
     public static void main(String[] args) {
-        Game game = new Game();
+        new Game();
     }
 }
